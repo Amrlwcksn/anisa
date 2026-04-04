@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Gallery - Anisa</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Dekorasi Bunga & Hati Estetik -->
+    <div class="emoji-decor top-left">🌸 💖</div>
+    <div class="emoji-decor bottom-right">🌺 💕</div>
+    <div class="emoji-decor top-right">🤍 🌸</div>
+    <div class="emoji-decor bottom-left">💖</div>
+
+    <section id="gallery-view" class="view-section active">
+        <div class="glass-container menu-container" style="max-width: 900px; padding: 2rem;">
+            <h2 class="title text-center" style="font-size: 2.5rem;">Mini Gallery 📸</h2>
+            <p class="subtitle text-center">Anisa Rahma Andini.</p>
+
+            <div class="photobooth-grid">
+                <!-- Strip Photobooth 1 -->
+                <div class="photobooth-strip">
+                    <div class="strip-images">
+                        <img src="assets/2.jpeg" alt="Foto 1">
+                        <img src="assets/1.jpeg" alt="Foto 2">
+                        <img src="assets/3.jpeg" alt="Foto 3">
+                    </div>
+                    <div class="strip-caption">anamir ✨</div>
+                </div>
+
+                <!-- Strip Photobooth 2 -->
+                <div class="photobooth-strip">
+                    <div class="strip-images">
+                        <img src="assets/4.jpeg" alt="Foto 4">
+                        <img src="assets/5.jpeg" alt="Foto 5">
+                        <img src="assets/6.jpeg" alt="Foto 6">
+                    </div>
+                    <div class="strip-caption">anamir 💕</div>
+                </div>
+            </div>
+
+
+            <!-- Photobooth View (Hidden by default) -->
+            <div id="photobooth-view">
+                <div class="camera-container">
+                    <video id="video-preview" autoplay playsinline></video>
+                    <div id="flash-effect" class="camera-flash"></div>
+                    <div id="countdown-display" class="countdown-overlay"></div>
+                    <div id="capture-status" class="capture-status"></div>
+                </div>
+
+                <div class="photobooth-controls">
+                    <button id="capture-btn" class="btn-capture" title="Ambil Foto">📸</button>
+                    <button id="close-photobooth-btn" class="btn btn-secondary">Tutup</button>
+                </div>
+
+                <!-- Generated Strip Preview -->
+                <div id="captured-strip-container">
+                    <h3 class="subtitle text-center">Hasil Photobooth-mu! ✨</h3>
+                    <div class="strip-preview-wrapper">
+                        <img id="strip-img-preview" src="" alt="Photobooth Strip Preview">
+                    </div>
+                    <div class="photobooth-controls">
+                        <button id="download-btn" class="btn btn-primary">Unduh Foto 💖</button>
+                        <button id="retake-btn" class="btn btn-secondary">Foto Lagi</button>
+                    </div>
+                </div>
+
+                <!-- Hidden Canvas for Strip Generation -->
+                <canvas id="captured-canvas" style="display:none;"></canvas>
+            </div>
+
+            <p class="gallery-note text-center">Huhuuu, gambarnya masih sedikit.</p>
+            <p class="gallery-note text-center">Ayoo kita foto lagi!</p>
+
+            <!-- Photobooth Trigger (Moved here) -->
+            <div class="text-center" style="margin: 1.5rem 0 0.5rem 0;">
+                <button id="start-photobooth-btn" class="btn btn-primary">Buka Photobooth 📸</button>
+            </div>
+
+            <div class="text-center" style="margin-top: 5px;">
+                <button onclick="window.location.href='home.html'" class="btn btn-text">← Kembali ke Menu</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="photobooth.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Sembunyikan default tombol mundur karena kita pakai link HTML */
+        #btn-back {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Dekorasi Bunga & Hati Estetik -->
+    <div class="emoji-decor top-left">🌸 💖</div>
+    <div class="emoji-decor bottom-right">🌺 💕</div>
+    <div class="emoji-decor top-right">🤍 🌸</div>
+    <div class="emoji-decor bottom-left">💖</div>
+
+    <!-- Tampilan Menu Master -->
+    <section id="menu-view" class="view-section active">
+        <div class="glass-container menu-container">
+            <h2 class="title text-center">For You, Anisa</h2>
+
+            <div class="simple-menu">
+                <a href="gallery.html" class="menu-item highlight-item">
+                    <span class="menu-icon">📸</span>
+                    <span class="menu-text">Mini Gallery</span>
+                </a>
+                <a href="minigames.html" class="menu-item">
+                    <span class="menu-icon">🎮</span>
+                    <span class="menu-text">Mini Games</span>
+                </a>
+                <a href="song.html" class="menu-item">
+                    <span class="menu-icon">🎵</span>
+                    <span class="menu-text">Song Reminder Her</span>
+                </a>
+                <a href="message.html" class="menu-item">
+                    <span class="menu-icon">💌</span>
+                    <span class="menu-text">Message</span>
+                </a>
+            </div>
+
+            <div class="text-center" style="margin-top: 20px;">
+                <button onclick="window.location.href='index.html'" class="btn btn-text">← Kembali ke Halaman
+                    Sapaan</button>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

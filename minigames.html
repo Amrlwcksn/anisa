@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Heart Shooter - Untuk Anisa</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS khusus arena Minigame */
+        body {
+            overflow: hidden;
+            /* Cegah scroll saat main */
+            background: linear-gradient(-45deg, #ffd1dc, #fff5f8, #ffe5ec, #fdfbfb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        #game-canvas {
+            display: block;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(255, 133, 162, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.8);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 235, 240, 0.3) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin: 0 auto;
+            border: 3px solid rgba(255, 255, 255, 0.7);
+            touch-action: none;
+            cursor: crosshair;
+            transition: box-shadow 0.3s ease;
+        }
+
+        #game-canvas:active {
+            box-shadow: 0 5px 25px rgba(255, 133, 162, 0.4), inset 0 0 20px rgba(255, 255, 255, 1);
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 15px auto;
+            padding: 0 15px;
+            z-index: 10;
+        }
+
+        .btn-back-game {
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--dark-pink);
+            border: 2px solid var(--primary-pink);
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 183, 197, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-back-game:hover {
+            background: var(--primary-pink);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .score-display {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--dark-pink);
+            background: rgba(255, 255, 255, 0.85);
+            padding: 8px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 183, 197, 0.6);
+            box-shadow: 0 5px 15px rgba(255, 133, 162, 0.25);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #score {
+            font-size: 1.6rem;
+            color: #ff5e8e;
+            display: inline-block;
+        }
+
+        #game-view {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Dekorasi Emoji Latar -->
+    <div class="emoji-decor top-left">🌸 💖</div>
+    <div class="emoji-decor bottom-right">🌺 💕</div>
+
+    <div id="game-view">
+        <div class="game-header" id="canvas-header">
+            <button class="btn-back-game" onclick="window.location.href='home.html'">← Kembali</button>
+            <div class="score-display">🏆 Poin: <span id="score">0</span> / 15</div>
+        </div>
+
+        <canvas id="game-canvas"></canvas>
+    </div>
+
+    <!-- Win Popup -->
+    <div id="win-overlay" class="popup-overlay">
+        <div class="glass-container popup-card text-center">
+            <div class="popup-icon">💖✨</div>
+            <h2 class="title" style="font-size: 2.2rem;">Yeayy Menang!</h2>
+            <p class="subtitle" style="margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--text-main);">Hebat! Lanjut liat halaman lain yuk?</p>
+            <button onclick="window.location.href='home.html'" class="btn btn-primary" style="font-size:1.1rem; padding: 12px 30px;">Oke gaiss</button>
+        </div>
+    </div>
+
+    <script src="minigames.js"></script>
+</body>
+
+</html>

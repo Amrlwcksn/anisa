@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message for Anisa</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <!-- HTML2Canvas Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+
+    <div class="emoji-decor top-left">🌸 ✨</div>
+    <div class="emoji-decor bottom-right">💖 🌺</div>
+    <section class="view-section active">
+        <div class="glass-container text-center"
+            style="max-width: 600px; position: relative; z-index: 200; pointer-events: all;">
+
+            <div id="envelope-section">
+                <h2 class="title" style="font-size: 2.2rem; margin-bottom: 10px;">For You, Anisa... 💌</h2>
+                <p class="subtitle" style="margin-bottom: 30px;">I have something to tell you.</p>
+
+                <div class="proposal-container" id="folder-container">
+                    <!-- Jendela popup (Awalnya tersembunyi) -->
+                    <div class="window-ui">
+                        <div class="title-bar">
+                            <div class="window-dots">
+                                <div class="dot red"></div>
+                                <div class="dot yellow"></div>
+                                <div class="dot green"></div>
+                            </div>
+                            <div style="font-size: 0.8rem; font-weight: bold; color: #888;">Message.txt</div>
+                            <div style="width: 30px;"></div>
+                        </div>
+                        <div class="window-body" id="proposal-content">
+                            <p style="margin-bottom: 15px; text-align: justify; line-height: 1.6;">Halo Anisa,</p>
+                            <p style="margin-bottom: 15px; text-align: justify; line-height: 1.6;">Ingat tidak saat kita
+                                pertama kali berkomunikasi melalui Instagram kemarin? Sejak saat itu, aku memperhatikan
+                                caramu bersikap. Aku sangat mengagumi kesederhanaanmu, baktimu kepada orang tua, serta
+                                ketegasanmu dalam mengambil keputusan. Satu hal lagi yang selalu berkesan bagiku:
+                                senyummu sangat manis dan selalu memberikan rasa tenang.</p>
+                            <p style="margin-bottom: 15px; text-align: justify; line-height: 1.6;">Ada banyak hal dari
+                                dirimu yang membuatku terus belajar. Caramu memberikan saran yang sangat masuk akal,
+                                serta kemampuanmu memposisikan diri di berbagai situasi benar-benar membuatku kagum. Aku
+                                sangat menghargai caramu yang bisa menahan ego—bahkan saat kamu mengingatkanku untuk
+                                berpikir lebih dalam sebelum melangkah. Itu menunjukkan betapa dewasanya dirimu.
+                                Ditambah lagi, caramu berinteraksi dengan anak kecil menunjukkan sisi lembut yang alami
+                                namun tetap tegas.</p>
+                            <p style="margin-bottom: 15px; text-align: justify; line-height: 1.6;">Jujur, aku tidak
+                                ingin hubungan kita berhenti di sini saja. Aku ingin mengajakmu melangkah lebih jauh,
+                                bukan sekadar teman. Aku ingin kita memiliki ruang untuk sama-sama bertumbuh, konsisten
+                                memperbaiki diri, dan upgrade kualitas diri kita masing-masing. Aku ingin kita belajar
+                                menahan ego bersama, menjadi pengingat dalam kebaikan, dan menjadi orang yang saling
+                                memberikan dukungan penuh saat salah satu dari kita sedang berjuang mencapai sesuatu.
+                            </p>
+                            <p style="margin-bottom: 15px; text-align: justify; line-height: 1.6;">Intinya, aku ingin
+                                kita berkomitmen untuk saling menjaga dan berproses bersama. Aku ingin kamu menjadi
+                                pasanganku, dengan harapan kita bisa membangun sesuatu yang lebih serius ke depannya.
+                            </p>
+                            <p
+                                style="font-weight: 700; margin-top: 25px; font-size: 1.2rem; color: var(--dark-pink); font-family: 'Outfit', sans-serif; text-align: center;">
+                                Kamu mau kan, jadi pacar aku?</p>
+
+                            <div style="margin-top: 20px;">
+                                <button id="btn-accept" class="btn btn-primary"
+                                    style="width: 100%; font-size: 1.1rem; padding: 12px; position: relative; z-index: 500; cursor: pointer;">MAU!
+                                    💕</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Folder Icon -->
+                    <div class="folder-wrapper" id="folder-trigger">
+                        <div class="folder-icon">
+                            <div class="folder-front">Click to open</div>
+                        </div>
+                        <div class="proposal-label">Secret Message 💖</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Layar Sukses -->
+            <div id="success-screen" class="celebration-text"
+                style="display: none; padding: 20px; animation: fadeIn 0.8s ease;">
+                <div
+                    style="font-size: 4rem; margin-bottom: 10px; filter: drop-shadow(0 10px 20px rgba(216, 75, 114, 0.3));">
+                    😉</div>
+                <h2 class="title" style="font-size: 2.8rem;">I Love You!</h2>
+                <p class="subtitle"
+                    style="font-size: 1.1rem; color: var(--dark-pink); margin-top: 5px; margin-bottom: 25px;">Terima
+                    kasih sudah mau menjadi bagian dari hidupku. ❤️</p>
+
+                <!-- Success Main Layout -->
+                <div class="success-layout"
+                    style="display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 20px;">
+
+                    <!-- Left Side Controls -->
+                    <div style="flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: 15px; order: 1;">
+                        <button id="btn-start-camera" class="btn btn-primary"
+                            style="width: 100%; background: linear-gradient(135deg, #ff9fb4, #ff85a2);">🎥 Ambil
+                            Foto</button>
+                        <div id="camera-controls"
+                            style="display: none; width: 100%; flex-direction: column; gap: 10px;">
+                            <button id="btn-capture-photo" class="btn btn-primary" style="width: 100%;">📸
+                                Jepret!</button>
+                            <button id="btn-retake-photo" class="btn btn-secondary" style="width: 100%;">🔄
+                                Ulangi</button>
+                        </div>
+                    </div>
+
+                    <!-- Center Certificate -->
+                    <div style="order: 2;">
+                        <!-- Dating Certificate Canvas / Notes Wrapper -->
+                        <div id="certificate-wrapper"
+                            style="padding: 40px 20px; background: linear-gradient(135deg, #fff5f8 0%, #fdfbfb 50%, #fff0f3 100%); border-radius: 15px; max-width: 420px; position: relative;">
+                            <div id="dating-certificate"
+                                style="margin: 0 auto; padding: 50px 30px; background: #ffffff; border-radius: 5px; box-shadow: 0 10px 30px rgba(255, 183, 197, 0.2); max-width: 380px; position: relative; text-align: center; border: 1px solid #fef0f3;">
+                                <!-- Washi Tape Top -->
+                                <div
+                                    style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%) rotate(-1deg); width: 110px; height: 30px; background: rgba(255, 183, 197, 0.4); backdrop-filter: blur(2px); z-index: 10;">
+                                </div>
+
+                                <div style="font-size: 1.5rem; margin-bottom: 20px; color: var(--dark-pink);">❤️</div>
+
+                                <h3
+                                    style="font-family: 'Playfair Display', serif; color: var(--dark-pink); font-size: 1.8rem; margin-bottom: 25px; font-weight: 600; letter-spacing: 1px;">
+                                    anamir</h3>
+
+                                <!-- Polaroid Photo Area (Simplified) -->
+                                <div style="background: white; padding: 12px 12px 35px 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); margin: 0 auto 30px auto; width: 100%; max-width: 250px; border: 1px solid #f5f5f5;">
+                                    <div id="photo-container" style="width: 100%; aspect-ratio: 1/1; background: #fff9fa; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; border-radius: 2px;">
+                                        <video id="webcam-video" autoplay playsinline
+                                            style="display: none; width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1);"></video>
+                                        <div id="flash-effect" class="camera-flash"></div>
+                                        <div id="countdown-display" class="countdown-overlay" style="font-size: 4rem;">
+                                        </div>
+                                        <canvas id="photo-canvas" style="display: none;"></canvas>
+                                        <img id="captured-photo"
+                                            style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                                        <div id="camera-placeholder" style="color: #ffdce5; font-size: 3rem;">📸</div>
+                                    </div>
+                                    <div
+                                        style="font-family: 'Caveat', cursive; font-size: 1.5rem; color: #888; margin-top: 15px;">
+                                        Captured Moment</div>
+                                </div>
+
+                                <div style="margin-bottom: 20px;">
+                                    <p
+                                        style="font-family: 'Outfit', sans-serif; text-transform: uppercase; letter-spacing: 2px; color: #ccaeb5; font-size: 0.75rem; font-weight: 700; margin-bottom: 10px;">
+                                        Since the day we decided</p>
+                                    <div id="cert-date"
+                                        style="font-family: 'Playfair Display', serif; font-weight: 600; color: #5a4b52; font-size: 1.4rem; margin-bottom: 5px;">
+                                    </div>
+                                    <div id="cert-date-numeric"
+                                        style="font-family: 'Outfit', sans-serif; color: var(--secondary-pink); font-size: 1.1rem; font-weight: 500; letter-spacing: 3px;">
+                                    </div>
+                                </div>
+
+                                <div
+                                    style="width: 40px; height: 2px; background: var(--primary-pink); margin: 25px auto;">
+                                </div>
+
+                                <p
+                                    style="font-family: 'Caveat', cursive; color: #a38d94; font-size: 1.4rem; font-style: italic;">
+                                    "Every day is a beautiful page with you."</p>
+
+                                <!-- Subtle Deco -->
+                                <div
+                                    style="position: absolute; bottom: 25px; right: 25px; font-size: 1.2rem; opacity: 0.4;">
+                                    🌸</div>
+                                <div
+                                    style="position: absolute; top: 35px; left: 25px; font-size: 1.2rem; opacity: 0.4;">
+                                    ✨</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side Controls -->
+                    <div style="flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: 15px; order: 3;">
+                        <button id="btn-save-cert" class="btn btn-primary" style="width: 100%; display: none;">🖨️
+                            Simpan Kenangan</button>
+                        <button onclick="window.location.href='home.html'" class="btn btn-secondary"
+                            style="border-radius: 50px; width: 100%;">← Menu Utama</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        const folderTrigger = document.getElementById('folder-trigger');
+        const folderContainer = document.getElementById('folder-container');
+        const btnAccept = document.getElementById('btn-accept');
+        const envelopeSection = document.getElementById('envelope-section');
+        const successScreen = document.getElementById('success-screen');
+        const certDate = document.getElementById('cert-date');
+        const btnSaveCert = document.getElementById('btn-save-cert');
+        const datingCertificate = document.getElementById('dating-certificate');
+        const certificateWrapper = document.getElementById('certificate-wrapper');
+
+        // Buka folder
+        folderTrigger.addEventListener('click', () => {
+            folderContainer.classList.add('open');
+        });
+
+        // Terima tombol
+        btnAccept.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Efek Confetti
+            let heartShape;
+            try {
+                // Gunakan default circle jika shapeFromPath tidak ada di versi ini
+                heartShape = confetti.shapeFromPath ? confetti.shapeFromPath({ path: 'M167 473c-75-54-150-137-150-233 0-111 129-139 129-23 0 116-129 179-129 179s-129-63-129-179c0-116 129-88 129 23 0 96-75 179-150 233z' }) : 'circle';
+            } catch (err) {
+                heartShape = 'circle';
+            }
+
+            var duration = 5 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+            var interval = setInterval(function () {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+
+                var particleCount = 50 * (timeLeft / duration);
+
+                confetti(Object.assign({}, defaults, {
+                    particleCount,
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+                    shapes: [heartShape, 'circle', 'square'],
+                    colors: ['#ffb7c5', '#ff85a2', '#d84b72']
+                }));
+                confetti(Object.assign({}, defaults, {
+                    particleCount,
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+                    shapes: [heartShape, 'circle', 'square'],
+                    colors: ['#ffb7c5', '#ff85a2', '#d84b72']
+                }));
+            }, 250);
+
+            // Transisi ke layar sukses
+            envelopeSection.style.opacity = '0';
+            envelopeSection.style.transition = 'opacity 0.6s ease';
+
+            // Set Waktu Sertifikat Saat Ini
+            const now = new Date();
+            const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const certDateNumeric = document.getElementById('cert-date-numeric');
+
+            certDate.textContent = now.toLocaleDateString('id-ID', optionsDate);
+            certDateNumeric.textContent = now.toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, ' . ');
+
+            setTimeout(() => {
+                envelopeSection.style.display = 'none';
+                successScreen.style.display = 'block';
+            }, 600);
+        });
+
+        // Simpan Sertifikat Sebagai Gambar
+        btnSaveCert.addEventListener('click', () => {
+            const originalTransform = certificateWrapper.style.transform;
+            certificateWrapper.style.transform = 'scale(1)';
+
+            html2canvas(certificateWrapper, {
+                backgroundColor: null, // Transparent to keep gradient background
+                scale: 2,
+                logging: false,
+                useCORS: true
+            }).then(canvas => {
+                certificateWrapper.style.transform = originalTransform;
+
+                const link = document.createElement('a');
+                link.download = 'Our-Memory-Anisa.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        });
+
+        // Photo Booth Logic
+        const btnStartCamera = document.getElementById('btn-start-camera');
+        const btnCapturePhoto = document.getElementById('btn-capture-photo');
+        const btnRetakePhoto = document.getElementById('btn-retake-photo');
+        const cameraControls = document.getElementById('camera-controls');
+
+        const webcamVideo = document.getElementById('webcam-video');
+        const photoCanvas = document.getElementById('photo-canvas');
+        const capturedPhoto = document.getElementById('captured-photo');
+        const cameraPlaceholder = document.getElementById('camera-placeholder');
+
+        let mediaStream = null;
+
+        // Buka Kamera
+        btnStartCamera.addEventListener('click', async () => {
+            try {
+                mediaStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+                webcamVideo.srcObject = mediaStream;
+                webcamVideo.style.display = 'block';
+                cameraPlaceholder.style.display = 'none';
+                capturedPhoto.style.display = 'none';
+
+                btnStartCamera.style.display = 'none';
+                cameraControls.style.display = 'flex';
+                btnSaveCert.style.display = 'none';
+                btnCapturePhoto.style.display = 'block';
+                btnRetakePhoto.style.display = 'none';
+            } catch (err) {
+                alert("Kamera tidak bisa diakses nih. Pastikan kamu sudah memberikan izin akses kamera ya! 🥺");
+            }
+        });
+
+        // Ambil Foto dengan Countdown
+        btnCapturePhoto.addEventListener('click', async () => {
+            const countdownDisplay = document.getElementById('countdown-display');
+            const flashEffect = document.getElementById('flash-effect');
+
+            btnCapturePhoto.disabled = true;
+            btnRetakePhoto.style.display = 'none';
+
+            // Countdown 3...2...1
+            for (let count = 3; count > 0; count--) {
+                countdownDisplay.textContent = count;
+                await new Promise(resolve => setTimeout(resolve, 800));
+            }
+            countdownDisplay.textContent = '❤️';
+            await new Promise(resolve => setTimeout(resolve, 500));
+            countdownDisplay.textContent = '';
+
+            // Efek Flash
+            flashEffect.classList.add('active');
+
+            // Proses Capture dengan Center Crop
+            const photoContainer = document.getElementById('photo-container');
+            const context = photoCanvas.getContext('2d');
+            
+            // Tentukan rasio target (kotak 1:1 sesuai aspect-ratio di CSS)
+            const targetWidth = 600;
+            const targetHeight = 600;
+            photoCanvas.width = targetWidth;
+            photoCanvas.height = targetHeight;
+            
+            const videoWidth = webcamVideo.videoWidth;
+            const videoHeight = webcamVideo.videoHeight;
+            
+            // Hitung dimensi untuk potong tengah (center crop) agar tidak lonjong
+            let sourceX, sourceY, sourceWidth, sourceHeight;
+            if (videoWidth > videoHeight) {
+                sourceHeight = videoHeight;
+                sourceWidth = videoHeight;
+                sourceX = (videoWidth - videoHeight) / 2;
+                sourceY = 0;
+            } else {
+                sourceWidth = videoWidth;
+                sourceHeight = videoWidth;
+                sourceX = 0;
+                sourceY = (videoHeight - videoWidth) / 2;
+            }
+            
+            context.translate(photoCanvas.width, 0);
+            context.scale(-1, 1);
+            context.drawImage(webcamVideo, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, targetWidth, targetHeight);
+            
+            const dataUrl = photoCanvas.toDataURL('image/png');
+            capturedPhoto.src = dataUrl;
+            
+            webcamVideo.style.display = 'none';
+            capturedPhoto.style.display = 'block';
+            
+            btnCapturePhoto.style.display = 'none';
+            btnRetakePhoto.style.display = 'block';
+            btnSaveCert.style.display = 'block';
+            btnCapturePhoto.disabled = false;
+
+            // Tunggu sebentar sebelum hilangkan flash
+            await new Promise(resolve => setTimeout(resolve, 500));
+            flashEffect.classList.remove('active');
+
+            // Matikan stream kamera
+            if (mediaStream) {
+                mediaStream.getTracks().forEach(track => track.stop());
+            }
+        });
+
+        // Ulangi Foto
+        btnRetakePhoto.addEventListener('click', async () => {
+            btnCapturePhoto.style.display = 'block';
+            btnRetakePhoto.style.display = 'none';
+            btnSaveCert.style.display = 'none';
+
+            try {
+                mediaStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+                webcamVideo.srcObject = mediaStream;
+                webcamVideo.style.display = 'block';
+                capturedPhoto.style.display = 'none';
+            } catch (err) {
+                alert("Kamera tidak bisa diakses nih. 🥺");
+            }
+        });
+    </script>
+
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</body>
+
+</html>

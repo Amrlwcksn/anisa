@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Reminder - Anisa</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ambient Romantic Effects */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 183, 197, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+
+        .playing .ambient-glow {
+            opacity: 1;
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.9;
+            }
+        }
+
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 2;
+            font-size: 1.5rem;
+            animation: floatUp 6s linear forwards;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(110vh) translateX(0) scale(0.5);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) translateX(var(--drift)) scale(1.2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ambient Glow -->
+    <div class="ambient-glow"></div>
+
+    <!-- Container for floating hearts -->
+    <div id="heart-container"></div>
+
+    <!-- Dekorasi Emoji Latar -->
+    <div class="emoji-decor top-left">🌸 🎵</div>
+    <div class="emoji-decor bottom-right">🎧 💕</div>
+    <div class="emoji-decor top-right">🤍 🌸</div>
+    <div class="emoji-decor bottom-left">🎶</div>
+
+    <section id="song-view" class="view-section active">
+        <div class="glass-container menu-container" style="max-width: 600px; padding: 2rem;">
+            <h2 class="title text-center" style="font-size: 2.5rem; margin-bottom: 0.5rem;">For You 🎵</h2>
+            <p class="subtitle text-center" style="margin-bottom: 2rem;">Putar pita kaset ini untukmu.</p>
+
+            <!-- Kaset Pita 1 -->
+            <div class="tape-item" style="margin-bottom: 4rem; border-bottom: 1px solid rgba(255,183,197,0.3); padding-bottom: 2rem;">
+                <div class="cassette-player">
+                    <div class="cassette-screws">
+                        <span class="screw top-left"></span>
+                        <span class="screw top-right"></span>
+                        <span class="screw bottom-left"></span>
+                        <span class="screw bottom-right"></span>
+                    </div>
+
+                    <!-- Label Kaset -->
+                    <div class="cassette-label glass-container glass-reflection">
+                        <div class="label-text" style="display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.2; padding-top: 2px;">
+                            <span>ANISA MIXTAPE Vol. 1</span>
+                            <span style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; margin-top: 3px; font-weight: normal; opacity: 0.85;">🎵 Jelita</span>
+                        </div>
+
+                        <!-- Jendela transparan kaset murni memperlihatkan putaran gigi roda -->
+                        <div class="cassette-window">
+                            <!-- Audio File -->
+                            <audio class="cassette-audio" src="assets/jelita.mp3"></audio>
+
+                            <!-- Roda Pemutar Kiri & Kanan (Akan diputar oleh JS) -->
+                            <div class="reel reel-left">
+                                <div class="spool"></div>
+                            </div>
+
+                            <div class="reel reel-right">
+                                <div class="spool"></div>
+                            </div>
+                        </div>
+
+                        <!-- Garis-garis estetika label -->
+                        <div class="label-stripes">
+                            <div class="stripe s-pink"></div>
+                            <div class="stripe s-white"></div>
+                            <div class="stripe s-pink"></div>
+                        </div>
+                    </div>
+
+                    <!-- Bagian Bawah Kaset (Trapezoid Read Head Area) -->
+                    <div class="cassette-bottom">
+                        <div class="tape-head"></div>
+                    </div>
+                </div>
+
+                <!-- Kontrol Audio Pintar -->
+                <div class="audio-progress-container">
+                    <span class="current-time">0:00</span>
+                    <input type="range" class="progress-bar custom-slider" value="0" max="100">
+                    <span class="total-time">0:00</span>
+                </div>
+
+                <div class="audio-volume-container">
+                    <span style="font-size: 1.1rem;">🔈</span>
+                    <input type="range" class="volume-bar custom-slider" min="0" max="100" value="100">
+                    <span style="font-size: 1.1rem;">🔊</span>
+                </div>
+
+                <!-- Audio Buttons (Play/Pause) -->
+                <div class="audio-controls" style="display: flex; gap: 15px; margin-top: 15px; justify-content: center;">
+                    <button class="btn btn-primary btn-play" style="padding: 10px 25px; min-width: unset;">
+                        <span style="font-size: 1.2rem;">▶️</span> Play
+                    </button>
+                    <button class="btn btn-secondary btn-pause" style="padding: 10px 25px; min-width: unset;">
+                        <span style="font-size: 1.2rem;">⏸️</span> Pause
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kaset Pita 2 -->
+            <div class="tape-item" style="margin-bottom: 3rem;">
+                <div class="cassette-player">
+                    <div class="cassette-screws">
+                        <span class="screw top-left"></span>
+                        <span class="screw top-right"></span>
+                        <span class="screw bottom-left"></span>
+                        <span class="screw bottom-right"></span>
+                    </div>
+
+                    <!-- Label Kaset -->
+                    <div class="cassette-label glass-container glass-reflection" style="background: rgba(255, 230, 240, 0.45);">
+                        <div class="label-text" style="display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.2; padding-top: 2px;">
+                            <span style="color: #d81b60;">ANAMIR MIXTAPE Vol. 1</span>
+                            <span style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: #d81b60; margin-top: 3px; font-weight: normal; opacity: 0.85;">🎶 Symphoni Yang Indah</span>
+                        </div>
+
+                        <!-- Jendela transparan kaset murni memperlihatkan putaran gigi roda -->
+                        <div class="cassette-window">
+                            <!-- Audio File -->
+                            <audio class="cassette-audio" src="assets/OnceSymphoniYangIndah.mp3"></audio>
+
+                            <!-- Roda Pemutar Kiri & Kanan (Akan diputar oleh JS) -->
+                            <div class="reel reel-left">
+                                <div class="spool"></div>
+                            </div>
+
+                            <div class="reel reel-right">
+                                <div class="spool"></div>
+                            </div>
+                        </div>
+
+                        <!-- Garis-garis estetika label -->
+                        <div class="label-stripes">
+                            <div class="stripe" style="background: #ff85a2;"></div>
+                            <div class="stripe s-white"></div>
+                            <div class="stripe" style="background: #ff85a2;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Bagian Bawah Kaset (Trapezoid Read Head Area) -->
+                    <div class="cassette-bottom">
+                        <div class="tape-head"></div>
+                    </div>
+                </div>
+
+                <!-- Kontrol Audio Pintar -->
+                <div class="audio-progress-container">
+                    <span class="current-time">0:00</span>
+                    <input type="range" class="progress-bar custom-slider" value="0" max="100">
+                    <span class="total-time">0:00</span>
+                </div>
+
+                <div class="audio-volume-container">
+                    <span style="font-size: 1.1rem;">🔈</span>
+                    <input type="range" class="volume-bar custom-slider" min="0" max="100" value="100">
+                    <span style="font-size: 1.1rem;">🔊</span>
+                </div>
+
+                <!-- Audio Buttons (Play/Pause) -->
+                <div class="audio-controls" style="display: flex; gap: 15px; margin-top: 15px; justify-content: center;">
+                    <button class="btn btn-primary btn-play" style="padding: 10px 25px; min-width: unset;">
+                        <span style="font-size: 1.2rem;">▶️</span> Play
+                    </button>
+                    <button class="btn btn-secondary btn-pause" style="padding: 10px 25px; min-width: unset;">
+                        <span style="font-size: 1.2rem;">⏸️</span> Pause
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top: 1.5rem;">
+                <button onclick="window.location.href='home.html'" class="btn btn-text">← Simpan Kaset
+                    (Kembali)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Script for Cassette Logic -->
+    <script>
+        const tapes = document.querySelectorAll('.tape-item');
+        const heartContainer = document.getElementById('heart-container');
+        let heartInterval;
+
+        function createHeart() {
+            const isPlaying = Array.from(document.querySelectorAll('.cassette-audio')).some(a => !a.paused);
+            if (!isPlaying) return;
+            const heart = document.createElement('div');
+            heart.className = 'heart-particle';
+            const hearts = ['💖', '💗', '💓', '💕', '✨', '🌸'];
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.setProperty('--drift', (Math.random() * 200 - 100) + 'px');
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heartContainer.appendChild(heart);
+
+            // Hapus elemen setelah animasi selesai
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+
+        function startHearts() {
+            if (!heartInterval) {
+                heartInterval = setInterval(createHeart, 600);
+            }
+        }
+
+        function stopHearts() {
+            clearInterval(heartInterval);
+            heartInterval = null;
+        }
+
+        // Fungsi format detik ke Menit:Detik
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "0:00";
+            const min = Math.floor(seconds / 60);
+            const sec = Math.floor(seconds % 60);
+            return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+        }
+
+        tapes.forEach(tape => {
+            const audio = tape.querySelector('.cassette-audio');
+            const btnPlay = tape.querySelector('.btn-play');
+            const btnPause = tape.querySelector('.btn-pause');
+            const reels = tape.querySelectorAll('.reel');
+            const progressBar = tape.querySelector('.progress-bar');
+            const volumeBar = tape.querySelector('.volume-bar');
+            const currentTimeEl = tape.querySelector('.current-time');
+            const totalTimeEl = tape.querySelector('.total-time');
+
+            // State animasi awal mati (paused)
+            reels.forEach(reel => reel.style.animationPlayState = 'paused');
+
+            // Tampilkan durasi total lagu setelah metadata audio selesai dimuat
+            audio.addEventListener('loadedmetadata', () => {
+                totalTimeEl.textContent = formatTime(audio.duration);
+                progressBar.max = Math.floor(audio.duration);
+            });
+
+            // Update bar lagu setiap detik saat berputar
+            audio.addEventListener('timeupdate', () => {
+                progressBar.value = Math.floor(audio.currentTime);
+                currentTimeEl.textContent = formatTime(audio.currentTime);
+
+                // Efek background penuhi slider secara mulus
+                const percentage = (audio.currentTime / audio.duration) * 100 || 0;
+                progressBar.style.background = `linear-gradient(to right, var(--dark-pink) ${percentage}%, #ffe5ec ${percentage}%)`;
+            });
+
+            // Saat user menggeser durasi (Seeking)
+            progressBar.addEventListener('input', () => {
+                audio.currentTime = progressBar.value;
+                currentTimeEl.textContent = formatTime(audio.currentTime);
+            });
+
+            // Saat user menggeser Volume
+            volumeBar.addEventListener('input', () => {
+                const vol = volumeBar.value / 100;
+                audio.volume = vol;
+                volumeBar.style.background = `linear-gradient(to right, var(--dark-pink) ${volumeBar.value}%, #ffe5ec ${volumeBar.value}%)`;
+            });
+
+            // Pulasan Awal Gradient Slider Volume
+            volumeBar.style.background = `linear-gradient(to right, var(--dark-pink) 100%, #ffe5ec 100%)`;
+
+            // Logika Play
+            btnPlay.addEventListener('click', () => {
+                // Pause kaset yang lain jika sedang dimainkan
+                document.querySelectorAll('.cassette-audio').forEach(a => {
+                    if (a !== audio && !a.paused) {
+                        a.pause();
+                        const pTape = a.closest('.tape-item');
+                        if (pTape) {
+                            pTape.querySelectorAll('.reel').forEach(r => r.style.animationPlayState = 'paused');
+                        }
+                    }
+                });
+
+                audio.play().then(() => {
+                    reels.forEach(reel => reel.style.animationPlayState = 'running');
+                    document.body.classList.add('playing');
+                    startHearts();
+                }).catch(e => console.log("Menunggu interaksi user untuk memutar audio"));
+            });
+
+            // Logika Pause
+            btnPause.addEventListener('click', () => {
+                audio.pause();
+                reels.forEach(reel => reel.style.animationPlayState = 'paused');
+                
+                // Cek apakah tidak ada audio yang menyala
+                const isPlaying = Array.from(document.querySelectorAll('.cassette-audio')).some(a => !a.paused);
+                if (!isPlaying) {
+                    document.body.classList.remove('playing');
+                    stopHearts();
+                }
+            });
+
+            // Berhenti otomatis jika lagu habis
+            audio.addEventListener('ended', () => {
+                reels.forEach(reel => reel.style.animationPlayState = 'paused');
+                progressBar.value = 0;
+                progressBar.style.background = '#ffe5ec';
+                currentTimeEl.textContent = "0:00";
+                
+                const isPlaying = Array.from(document.querySelectorAll('.cassette-audio')).some(a => !a.paused);
+                if (!isPlaying) {
+                    document.body.classList.remove('playing');
+                    stopHearts();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

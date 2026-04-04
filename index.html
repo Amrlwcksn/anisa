@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Anisa</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Dekorasi Bunga & Hati Estetik (Menggunakan Emoji) -->
+    <div class="emoji-decor top-left">🌸 💖</div>
+    <div class="emoji-decor bottom-right">🌺 💕</div>
+    <div class="emoji-decor top-right">🤍 🌸</div>
+    <div class="emoji-decor bottom-left">💖</div>
+
+    <!-- Tampilan Home -->
+    <section id="home-view" class="view-section active">
+        <div class="glass-container text-center">
+            <h1 class="title">Hallo Anisa 🌸</h1>
+            <p class="subtitle">Do you want to see your gift?</p>
+            <div class="button-group">
+                <button id="btn-yes" class="btn btn-primary">Yes please!</button>
+                <button id="btn-no" class="btn btn-secondary">No thanks</button>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Popup Card Permohonan -->
+    <div id="popup-overlay" class="popup-overlay hidden">
+        <div class="glass-container popup-card text-center">
+            <div class="popup-icon">💖</div>
+            <h2 class="title" style="font-size: 2rem;">Pleaseee...</h2>
+            <p class="subtitle" style="margin-bottom: 1.5rem;">Aku janji ini bakal lucu dan kamu pasti suka! 💕</p>
+            <button id="btn-popup-ok" class="btn btn-primary">Oke deh!</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
