@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -20,7 +20,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(255, 183, 197, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+            background: radial-gradient(circle, rgba(128, 203, 196, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
             pointer-events: none;
             z-index: 1;
             opacity: 0;
@@ -86,18 +86,18 @@
     <div id="heart-container"></div>
 
     <!-- Dekorasi Emoji Latar -->
-    <div class="emoji-decor top-left">🌸 🎵</div>
-    <div class="emoji-decor bottom-right">🎧 💕</div>
-    <div class="emoji-decor top-right">🤍 🌸</div>
-    <div class="emoji-decor bottom-left">🎶</div>
+    <div class="emoji-decor top-left">🌿 ✨</div>
+    <div class="emoji-decor bottom-right">🍃 💎</div>
+    <div class="emoji-decor top-right">🐚 🤍</div>
+    <div class="emoji-decor bottom-left">🌿</div>
 
     <section id="song-view" class="view-section active">
         <div class="glass-container menu-container" style="max-width: 600px; padding: 2rem;">
-            <h2 class="title text-center" style="font-size: 2.5rem; margin-bottom: 0.5rem;">For You 🎵</h2>
-            <p class="subtitle text-center" style="margin-bottom: 2rem;">Putar pita kaset ini untukmu.</p>
+            <h2 class="title text-center" style="font-size: 2.8rem;">Song Reminder</h2>
+            <p class="text-center" style="font-family: 'Dancing Script', cursive; font-size: 1.6rem; color: var(--dark-tosca); margin-bottom: 2rem;">Songs that remind me of you, Anisa Rahma Andini.</p>
 
             <!-- Kaset Pita 1 -->
-            <div class="tape-item" style="margin-bottom: 4rem; border-bottom: 1px solid rgba(255,183,197,0.3); padding-bottom: 2rem;">
+            <div class="tape-item" style="margin-bottom: 4rem; border-bottom: 1px solid rgba(64,224,208,0.3); padding-bottom: 2rem;">
                 <div class="cassette-player">
                     <div class="cassette-screws">
                         <span class="screw top-left"></span>
@@ -130,9 +130,9 @@
 
                         <!-- Garis-garis estetika label -->
                         <div class="label-stripes">
-                            <div class="stripe s-pink"></div>
+                            <div class="stripe" style="background: var(--secondary-tosca);"></div>
                             <div class="stripe s-white"></div>
-                            <div class="stripe s-pink"></div>
+                            <div class="stripe" style="background: var(--secondary-tosca);"></div>
                         </div>
                     </div>
 
@@ -179,8 +179,8 @@
                     <!-- Label Kaset -->
                     <div class="cassette-label glass-container glass-reflection" style="background: rgba(255, 230, 240, 0.45);">
                         <div class="label-text" style="display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.2; padding-top: 2px;">
-                            <span style="color: #d81b60;">ANAMIR MIXTAPE Vol. 1</span>
-                            <span style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: #d81b60; margin-top: 3px; font-weight: normal; opacity: 0.85;">🎶 Symphoni Yang Indah</span>
+                            <span style="color: var(--dark-tosca);">ANAMIR MIXTAPE Vol. 1</span>
+                            <span style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--dark-tosca); margin-top: 3px; font-weight: normal; opacity: 0.85;">🎶 Symphoni Yang Indah</span>
                         </div>
 
                         <!-- Jendela transparan kaset murni memperlihatkan putaran gigi roda -->
@@ -200,9 +200,9 @@
 
                         <!-- Garis-garis estetika label -->
                         <div class="label-stripes">
-                            <div class="stripe" style="background: #ff85a2;"></div>
+                            <div class="stripe" style="background: var(--secondary-tosca);"></div>
                             <div class="stripe s-white"></div>
-                            <div class="stripe" style="background: #ff85a2;"></div>
+                            <div class="stripe" style="background: var(--secondary-tosca);"></div>
                         </div>
                     </div>
 
@@ -254,7 +254,7 @@
             if (!isPlaying) return;
             const heart = document.createElement('div');
             heart.className = 'heart-particle';
-            const hearts = ['💖', '💗', '💓', '💕', '✨', '🌸'];
+            const hearts = ['🌿', '✨', '💎', '🐚', '🤍', '🍃'];
             heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.setProperty('--drift', (Math.random() * 200 - 100) + 'px');
@@ -311,8 +311,8 @@
                 currentTimeEl.textContent = formatTime(audio.currentTime);
 
                 // Efek background penuhi slider secara mulus
-                const percentage = (audio.currentTime / audio.duration) * 100 || 0;
-                progressBar.style.background = `linear-gradient(to right, var(--dark-pink) ${percentage}%, #ffe5ec ${percentage}%)`;
+                const color = percentage > 0 ? 'var(--dark-tosca)' : 'var(--soft-tosca)';
+                progressBar.style.background = `linear-gradient(to right, ${color} ${percentage}%, var(--soft-tosca) ${percentage}%)`;
             });
 
             // Saat user menggeser durasi (Seeking)
@@ -325,11 +325,11 @@
             volumeBar.addEventListener('input', () => {
                 const vol = volumeBar.value / 100;
                 audio.volume = vol;
-                volumeBar.style.background = `linear-gradient(to right, var(--dark-pink) ${volumeBar.value}%, #ffe5ec ${volumeBar.value}%)`;
+                volumeBar.style.background = `linear-gradient(to right, var(--dark-tosca) ${volumeBar.value}%, var(--soft-tosca) ${volumeBar.value}%)`;
             });
 
             // Pulasan Awal Gradient Slider Volume
-            volumeBar.style.background = `linear-gradient(to right, var(--dark-pink) 100%, #ffe5ec 100%)`;
+            volumeBar.style.background = `linear-gradient(to right, var(--dark-tosca) 100%, var(--soft-tosca) 100%)`;
 
             // Logika Play
             btnPlay.addEventListener('click', () => {

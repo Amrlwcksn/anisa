@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Caveat:wght@400;500;600;700&family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <!-- Confetti Library -->
@@ -20,14 +20,14 @@
 
 <body>
 
-    <div class="emoji-decor top-left">🌸 ✨</div>
-    <div class="emoji-decor bottom-right">💖 🌺</div>
+    <div class="emoji-decor top-left">🌿 ✨</div>
+    <div class="emoji-decor bottom-right">🍃 💎</div>
     <section class="view-section active">
         <div class="glass-container text-center"
             style="max-width: 600px; position: relative; z-index: 200; pointer-events: all;">
 
             <div id="envelope-section">
-                <h2 class="title" style="font-size: 2.2rem; margin-bottom: 10px;">For You, Anisa... 💌</h2>
+                <h2 class="title" style="font-size: 2.2rem; margin-bottom: 15px;">For You, Anisa... 🌿</h2>
                 <p class="subtitle" style="margin-bottom: 30px;">I have something to tell you.</p>
 
                 <div class="proposal-container" id="folder-container">
@@ -39,7 +39,7 @@
                                 <div class="dot yellow"></div>
                                 <div class="dot green"></div>
                             </div>
-                            <div style="font-size: 0.8rem; font-weight: bold; color: #888;">Message.txt</div>
+                            <div style="font-size: 0.8rem; font-weight: bold; color: #fff;">Message.txt</div>
                             <div style="width: 30px;"></div>
                         </div>
                         <div class="window-body" id="proposal-content">
@@ -68,23 +68,27 @@
                                 pasanganku, dengan harapan kita bisa membangun sesuatu yang lebih serius ke depannya.
                             </p>
                             <p
-                                style="font-weight: 700; margin-top: 25px; font-size: 1.2rem; color: var(--dark-pink); font-family: 'Outfit', sans-serif; text-align: center;">
+                                style="font-weight: 700; margin-top: 25px; font-size: 1.2rem; color: var(--dark-tosca); font-family: 'Outfit', sans-serif; text-align: center;">
                                 Kamu mau kan, jadi pacar aku?</p>
 
                             <div style="margin-top: 20px;">
-                                <button id="btn-accept" class="btn btn-primary"
-                                    style="width: 100%; font-size: 1.1rem; padding: 12px; position: relative; z-index: 500; cursor: pointer;">MAU!
-                                    💕</button>
+                                <button id="btn-accept" class="btn btn-accent"
+                                    style="width: 100%; font-size: 1.15rem; padding: 14px; position: relative; z-index: 500; cursor: pointer;">MAU!
+                                    💎</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- Folder Icon -->
                     <div class="folder-wrapper" id="folder-trigger">
-                        <div class="folder-icon">
-                            <div class="folder-front">Click to open</div>
+                        <div class="folder-background"
+                            style="background: var(--soft-tosca); position: absolute; top:0; left:0; width:100%; height:100%; border-radius: 15px; border: 1px solid var(--primary-tosca); opacity: 0.3;">
                         </div>
-                        <div class="proposal-label">Secret Message 💖</div>
+                        <div class="folder-icon"
+                            style="background: var(--secondary-tosca); box-shadow: 0 10px 20px rgba(0, 96, 100, 0.1);">
+                            <div class="folder-front" style="background: var(--primary-tosca);">Click to open</div>
+                        </div>
+                        <div class="proposal-label">Secret Message ✨</div>
                     </div>
                 </div>
             </div>
@@ -93,12 +97,12 @@
             <div id="success-screen" class="celebration-text"
                 style="display: none; padding: 20px; animation: fadeIn 0.8s ease;">
                 <div
-                    style="font-size: 4rem; margin-bottom: 10px; filter: drop-shadow(0 10px 20px rgba(216, 75, 114, 0.3));">
-                    😉</div>
-                <h2 class="title" style="font-size: 2.8rem;">ILY!</h2>
+                    style="font-size: 4rem; margin-bottom: 10px; filter: drop-shadow(0 10px 20px rgba(0, 151, 167, 0.3));">
+                    ✨</div>
+                <h2 class="title" style="font-size: 2.8rem;">I Love You!</h2>
                 <p class="subtitle"
-                    style="font-size: 1.1rem; color: var(--dark-pink); margin-top: 5px; margin-bottom: 25px;">Terima
-                    kasih sudah mau menjadi bagian dari hidupku. ❤️</p>
+                    style="font-size: 1.1rem; color: var(--dark-tosca); margin-top: 5px; margin-bottom: 25px;">Terima
+                    kasih sudah mau menjadi bagian dari hidupku. ✨</p>
 
                 <!-- Success Main Layout -->
                 <div class="success-layout"
@@ -106,9 +110,7 @@
 
                     <!-- Left Side Controls -->
                     <div style="flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: 15px; order: 1;">
-                        <button id="btn-start-camera" class="btn btn-primary"
-                            style="width: 100%; background: linear-gradient(135deg, #ff9fb4, #ff85a2);">🎥 Ambil
-                            Foto</button>
+                        <button id="btn-start-camera" class="btn btn-primary">🎥 Ambil Foto</button>
                         <div id="camera-controls"
                             style="display: none; width: 100%; flex-direction: column; gap: 10px;">
                             <button id="btn-capture-photo" class="btn btn-primary" style="width: 100%;">📸
@@ -122,23 +124,25 @@
                     <div style="order: 2;">
                         <!-- Dating Certificate Canvas / Notes Wrapper -->
                         <div id="certificate-wrapper"
-                            style="padding: 40px 20px; background: linear-gradient(135deg, #fff5f8 0%, #fdfbfb 50%, #fff0f3 100%); border-radius: 15px; max-width: 420px; position: relative;">
+                            style="padding: 40px 20px; background: linear-gradient(135deg, var(--soft-tosca) 0%, #ffffff 40%, #E0F2F1 100%); border-radius: 20px; max-width: 420px; position: relative; border: 1px solid rgba(255,255,255,0.5);">
                             <div id="dating-certificate"
-                                style="margin: 0 auto; padding: 50px 30px; background: #ffffff; border-radius: 5px; box-shadow: 0 10px 30px rgba(255, 183, 197, 0.2); max-width: 380px; position: relative; text-align: center; border: 1px solid #fef0f3;">
+                                style="margin: 0 auto; padding: 50px 30px; background: #ffffff; border-radius: 5px; box-shadow: 0 10px 30px rgba(0, 96, 100, 0.05); max-width: 380px; position: relative; text-align: center; border: 1px solid #E0F2F1;">
                                 <!-- Washi Tape Top -->
                                 <div
-                                    style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%) rotate(-1deg); width: 110px; height: 30px; background: rgba(255, 183, 197, 0.4); backdrop-filter: blur(2px); z-index: 10;">
+                                    style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%) rotate(-1deg); width: 110px; height: 30px; background: rgba(128, 203, 196, 0.3); backdrop-filter: blur(2px); z-index: 10; border: 1px solid rgba(255,255,255,0.5);">
                                 </div>
 
-                                <div style="font-size: 1.5rem; margin-bottom: 20px; color: var(--dark-pink);">❤️</div>
+                                <div style="font-size: 1.5rem; margin-bottom: 20px; color: var(--accent-gold);">✨</div>
 
                                 <h3
-                                    style="font-family: 'Playfair Display', serif; color: var(--dark-pink); font-size: 1.8rem; margin-bottom: 25px; font-weight: 600; letter-spacing: 1px;">
-                                    anamir</h3>
+                                    style="font-family: 'Playfair Display', serif; color: var(--dark-tosca); font-size: 1.8rem; margin-bottom: 25px; font-weight: 600; letter-spacing: 1px;">
+                                    Anamir</h3>
 
                                 <!-- Polaroid Photo Area (Simplified) -->
-                                <div style="background: white; padding: 12px 12px 35px 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); margin: 0 auto 30px auto; width: 100%; max-width: 250px; border: 1px solid #f5f5f5;">
-                                    <div id="photo-container" style="width: 100%; aspect-ratio: 1/1; background: #fff9fa; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; border-radius: 2px;">
+                                <div
+                                    style="background: white; padding: 12px 12px 35px 12px; box-shadow: 0 5px 25px rgba(0, 77, 64, 0.04); margin: 0 auto 30px auto; width: 100%; max-width: 250px; border: 1px solid #f0fdfc;">
+                                    <div id="photo-container"
+                                        style="width: 100%; aspect-ratio: 1/1; background: #f7fdfc; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; border-radius: 2px;">
                                         <video id="webcam-video" autoplay playsinline
                                             style="display: none; width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1);"></video>
                                         <div id="flash-effect" class="camera-flash"></div>
@@ -147,7 +151,8 @@
                                         <canvas id="photo-canvas" style="display: none;"></canvas>
                                         <img id="captured-photo"
                                             style="display: none; width: 100%; height: 100%; object-fit: cover;">
-                                        <div id="camera-placeholder" style="color: #ffdce5; font-size: 3rem;">📸</div>
+                                        <div id="camera-placeholder"
+                                            style="color: var(--primary-tosca); font-size: 3rem;">📸</div>
                                     </div>
                                     <div
                                         style="font-family: 'Caveat', cursive; font-size: 1.5rem; color: #888; margin-top: 15px;">
@@ -156,28 +161,28 @@
 
                                 <div style="margin-bottom: 20px;">
                                     <p
-                                        style="font-family: 'Outfit', sans-serif; text-transform: uppercase; letter-spacing: 2px; color: #ccaeb5; font-size: 0.75rem; font-weight: 700; margin-bottom: 10px;">
+                                        style="font-family: 'Outfit', sans-serif; text-transform: uppercase; letter-spacing: 2px; color: var(--primary-tosca); font-size: 0.75rem; font-weight: 700; margin-bottom: 10px;">
                                         Since the day we decided</p>
                                     <div id="cert-date"
-                                        style="font-family: 'Playfair Display', serif; font-weight: 600; color: #5a4b52; font-size: 1.4rem; margin-bottom: 5px;">
+                                        style="font-family: 'Playfair Display', serif; font-weight: 600; color: var(--dark-tosca); font-size: 1.4rem; margin-bottom: 5px;">
                                     </div>
                                     <div id="cert-date-numeric"
-                                        style="font-family: 'Outfit', sans-serif; color: var(--secondary-pink); font-size: 1.1rem; font-weight: 500; letter-spacing: 3px;">
+                                        style="font-family: 'Outfit', sans-serif; color: var(--accent-gold); font-size: 1.1rem; font-weight: 600; letter-spacing: 4px;">
                                     </div>
                                 </div>
 
                                 <div
-                                    style="width: 40px; height: 2px; background: var(--primary-pink); margin: 25px auto;">
+                                    style="width: 40px; height: 2px; background: var(--primary-tosca); margin: 25px auto;">
                                 </div>
 
                                 <p
-                                    style="font-family: 'Caveat', cursive; color: #a38d94; font-size: 1.4rem; font-style: italic;">
+                                    style="font-family: 'Caveat', cursive; color: var(--primary-tosca); font-size: 1.4rem; font-style: italic;">
                                     "Every day is a beautiful page with you."</p>
 
                                 <!-- Subtle Deco -->
                                 <div
                                     style="position: absolute; bottom: 25px; right: 25px; font-size: 1.2rem; opacity: 0.4;">
-                                    🌸</div>
+                                    🌿</div>
                                 <div
                                     style="position: absolute; top: 35px; left: 25px; font-size: 1.2rem; opacity: 0.4;">
                                     ✨</div>
@@ -236,21 +241,19 @@
 
             var interval = setInterval(function () {
                 var timeLeft = animationEnd - Date.now();
-                if (timeLeft <= 0) return clearInterval(interval);
-
                 var particleCount = 50 * (timeLeft / duration);
 
                 confetti(Object.assign({}, defaults, {
                     particleCount,
                     origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-                    shapes: [heartShape, 'circle', 'square'],
-                    colors: ['#ffb7c5', '#ff85a2', '#d84b72']
+                    shapes: ['circle', 'square'],
+                    colors: ['#80CBC4', '#4DB6AC', '#006064', '#C5A059', '#FFFFFF']
                 }));
                 confetti(Object.assign({}, defaults, {
                     particleCount,
                     origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-                    shapes: [heartShape, 'circle', 'square'],
-                    colors: ['#ffb7c5', '#ff85a2', '#d84b72']
+                    shapes: ['circle', 'square'],
+                    colors: ['#80CBC4', '#4DB6AC', '#006064', '#C5A059', '#FFFFFF']
                 }));
             }, 250);
 
@@ -347,16 +350,16 @@
             // Proses Capture dengan Center Crop
             const photoContainer = document.getElementById('photo-container');
             const context = photoCanvas.getContext('2d');
-            
+
             // Tentukan rasio target (kotak 1:1 sesuai aspect-ratio di CSS)
             const targetWidth = 600;
             const targetHeight = 600;
             photoCanvas.width = targetWidth;
             photoCanvas.height = targetHeight;
-            
+
             const videoWidth = webcamVideo.videoWidth;
             const videoHeight = webcamVideo.videoHeight;
-            
+
             // Hitung dimensi untuk potong tengah (center crop) agar tidak lonjong
             let sourceX, sourceY, sourceWidth, sourceHeight;
             if (videoWidth > videoHeight) {
@@ -370,17 +373,17 @@
                 sourceX = 0;
                 sourceY = (videoHeight - videoWidth) / 2;
             }
-            
+
             context.translate(photoCanvas.width, 0);
             context.scale(-1, 1);
             context.drawImage(webcamVideo, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, targetWidth, targetHeight);
-            
+
             const dataUrl = photoCanvas.toDataURL('image/png');
             capturedPhoto.src = dataUrl;
-            
+
             webcamVideo.style.display = 'none';
             capturedPhoto.style.display = 'block';
-            
+
             btnCapturePhoto.style.display = 'none';
             btnRetakePhoto.style.display = 'block';
             btnSaveCert.style.display = 'block';

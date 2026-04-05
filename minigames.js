@@ -47,8 +47,8 @@ const PADDING = 20;
 const player = {
     x: gameWidth / 2,
     y: gameHeight - 50,
-    size: 45,
-    emoji: '🌸' // Ikon player
+    emoji: '🌸', // Ikon player (bunga anggrek)
+    size: 40
 };
 
 // Koleksi data array 
@@ -108,8 +108,8 @@ setInterval(() => {
 // Logika Spawner Musuh (Hati Cinta dari Langit)
 setInterval(() => {
     if (isPlaying) {
-        const heartEmojis = ['💖', '💕', '💗', '💓', '💝'];
-        const randomEmoji = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+        const mintEmojis = ['✨', '💎', '🤍', '🍃', '🐚'];
+        const randomEmoji = mintEmojis[Math.floor(Math.random() * mintEmojis.length)];
 
         // Randomisasi awal musuh lahir secara horizontal
         const startX = Math.max(PADDING, Math.min(Math.random() * gameWidth, gameWidth - PADDING));
@@ -246,10 +246,10 @@ function draw() {
     ctx.font = `${player.size}px Arial`;
     ctx.fillText(player.emoji, player.x, player.y);
 
-    // Cetak Teks Cinta Mengambang sebagai Ledakan Visual (Tanpa shadow/fade lambat)
+    // Cetak Teks Cinta Mengambang sebagai Ledakan Visual
     for (let ex of explosions) {
         ctx.font = `bold 22px 'Outfit', sans-serif`;
-        ctx.fillStyle = `#d84b72`; // Warna solid seketika, mengurangi beban CPU
+        ctx.fillStyle = `#006064`; // Dark Tosca
         ctx.fillText(ex.text, ex.x, ex.y);
     }
 }

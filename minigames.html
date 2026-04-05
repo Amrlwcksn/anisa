@@ -9,24 +9,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
         /* CSS khusus arena Minigame */
         body {
             overflow: hidden;
-            /* Cegah scroll saat main */
-            background: linear-gradient(-45deg, #ffd1dc, #fff5f8, #ffe5ec, #fdfbfb);
+            background: linear-gradient(-45deg, var(--soft-pink), #fff, var(--soft-tosca), #fdfbfb);
             background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            animation: gradientBG 20s ease infinite;
         }
 
         #game-canvas {
             display: block;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(255, 133, 162, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.8);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 235, 240, 0.3) 100%);
+            box-shadow: 0 15px 45px rgba(32, 178, 170, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.8);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(224, 242, 241, 0.4) 100%);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             margin: 0 auto;
@@ -52,35 +51,36 @@
         }
 
         .btn-back-game {
-            background: rgba(255, 255, 255, 0.8);
-            color: var(--dark-pink);
-            border: 2px solid var(--primary-pink);
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--dark-tosca);
+            border: 2px solid var(--primary-tosca);
             border-radius: 50px;
-            padding: 8px 20px;
+            padding: 8px 25px;
             font-size: 1rem;
             font-family: 'Outfit', sans-serif;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(255, 183, 197, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(64, 224, 208, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .btn-back-game:hover {
-            background: var(--primary-pink);
+            background: var(--primary-tosca);
             color: white;
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(64, 224, 208, 0.4);
         }
 
         .score-display {
             font-size: 1.3rem;
             font-weight: 800;
-            color: var(--dark-pink);
-            background: rgba(255, 255, 255, 0.85);
-            padding: 8px 25px;
+            color: var(--dark-tosca);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 30px;
             border-radius: 50px;
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 183, 197, 0.6);
-            box-shadow: 0 5px 15px rgba(255, 133, 162, 0.25);
+            border: 2px solid rgba(64, 224, 208, 0.4);
+            box-shadow: 0 10px 25px rgba(32, 178, 170, 0.15);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -111,8 +111,8 @@
 <body>
 
     <!-- Dekorasi Emoji Latar -->
-    <div class="emoji-decor top-left">🌸 💖</div>
-    <div class="emoji-decor bottom-right">🌺 💕</div>
+    <div class="emoji-decor top-left">🌿 ✨</div>
+    <div class="emoji-decor bottom-right">🍃 💎</div>
 
     <div id="game-view">
         <div class="game-header" id="canvas-header">
@@ -126,9 +126,9 @@
     <!-- Win Popup -->
     <div id="win-overlay" class="popup-overlay">
         <div class="glass-container popup-card text-center">
-            <div class="popup-icon">💖✨</div>
+            <div class="popup-icon">✨🍃</div>
             <h2 class="title" style="font-size: 2.2rem;">Yeayy Menang!</h2>
-            <p class="subtitle" style="margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--text-main);">Hebat! Lanjut liat halaman lain yuk?</p>
+            <p class="subtitle" style="margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--dark-tosca);">Hebat! Lanjut liat halaman lain yuk?</p>
             <button onclick="window.location.href='home.html'" class="btn btn-primary" style="font-size:1.1rem; padding: 12px 30px;">Oke gaiss</button>
         </div>
     </div>

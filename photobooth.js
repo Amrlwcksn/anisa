@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function startCamera() {
         try {
             stream = await navigator.mediaDevices.getUserMedia({
-                video: { 
+                video: {
                     facingMode: 'user',
                     width: { ideal: 1280 },
                     height: { ideal: 720 }
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             video.srcObject = stream;
             video.play();
-            
+
             photoboothView.classList.add('active');
             startBtn.style.display = 'none';
             resultContainer.classList.remove('active');
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (let i = 0; i < MAX_PHOTOS; i++) {
             statusDisplay.textContent = `Foto ke-${i + 1} dari ${MAX_PHOTOS}`;
-            
+
             // Countdown 3...2...1
             for (let count = 3; count > 0; count--) {
                 countdownDisplay.textContent = count;
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             capturePhoto();
             await new Promise(resolve => setTimeout(resolve, 500));
             flashEffect.classList.remove('active');
-            
+
             // Wait before next photo
             if (i < MAX_PHOTOS - 1) {
                 await new Promise(resolve => setTimeout(resolve, 1000));
@@ -102,11 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Crop center and draw mirrored
         const startX = (video.videoWidth - size) / 2;
         const startY = (video.videoHeight - size) / 2;
-        
+
         tempCtx.translate(600, 0);
         tempCtx.scale(-1, 1);
         tempCtx.drawImage(video, startX, startY, size, size, 0, 0, 600, 600);
-        
+
         // Add romantic sepia filter like in style.css
         tempCtx.filter = 'sepia(30%) contrast(1.05) brightness(0.95)';
         tempCtx.drawImage(tempCanvas, 0, 0); // Apply filter by redrawing
@@ -133,12 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const img = new Image();
             img.onload = () => {
                 const y = padding + (index * (photoSize + padding));
-                
+
                 // Photo Border/Stroke
                 ctx.strokeStyle = '#eeeeee';
                 ctx.lineWidth = 1;
                 ctx.strokeRect(padding, y, photoSize, photoSize);
-                
+
                 ctx.drawImage(img, padding, y, photoSize, photoSize);
 
                 // If last photo, draw caption and show result
@@ -155,23 +155,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function drawCaption(width, height) {
         ctx.save();
-        
+
         // Use a nice font (Outfit falls back to Sans)
         ctx.fillStyle = '#444444';
         ctx.textAlign = 'center';
-        
+
         // "Handwritten" feel caption
         ctx.font = 'italic 900 32px "Playfair Display", serif';
         ctx.translate(width / 2, height - 60);
         ctx.rotate(-2 * Math.PI / 180); // Slight tilt
-        ctx.fillText('anamir ✨', 0, 0);
-        
+        ctx.fillText('Anamir ✨', 0, 0);
+
         ctx.restore();
     }
 
     function downloadStrip() {
         const link = document.createElement('a');
-        link.download = `photobooth-anamir-${Date.now()}.jpg`;
+        link.download = `photobooth-Anisa-${Date.now()}.jpg`;
         link.href = canvas.toDataURL('image/jpeg', 1.0);
         link.click();
     }
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtn.addEventListener('click', stopCamera);
     captureBtn.addEventListener('click', captureSequence);
     downloadBtn.addEventListener('click', downloadStrip);
-    
+
     retakeBtn.addEventListener('click', () => {
         resultContainer.classList.remove('active');
         video.parentElement.style.opacity = '1';
