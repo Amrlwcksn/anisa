@@ -71,10 +71,12 @@
                                 style="font-weight: 700; margin-top: 25px; font-size: 1.2rem; color: var(--dark-tosca); font-family: 'Outfit', sans-serif; text-align: center;">
                                 Kamu mau kan, jadi pacar aku?</p>
 
-                            <div style="margin-top: 20px;">
+                            <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; position: relative; min-height: 55px;">
                                 <button id="btn-accept" class="btn btn-accent"
-                                    style="width: 100%; font-size: 1.15rem; padding: 14px; position: relative; z-index: 500; cursor: pointer;">MAU!
+                                    style="flex: 1; font-size: 1.15rem; padding: 14px; position: relative; z-index: 500; cursor: pointer;">MAU!
                                     💎</button>
+                                <button id="btn-reject" class="btn btn-secondary"
+                                    style="flex: 1; font-size: 1.15rem; padding: 14px; position: relative; z-index: 500; cursor: pointer;">Tidak</button>
                             </div>
                         </div>
                     </div>
@@ -207,12 +209,54 @@
         const folderTrigger = document.getElementById('folder-trigger');
         const folderContainer = document.getElementById('folder-container');
         const btnAccept = document.getElementById('btn-accept');
+        const btnReject = document.getElementById('btn-reject');
         const envelopeSection = document.getElementById('envelope-section');
         const successScreen = document.getElementById('success-screen');
         const certDate = document.getElementById('cert-date');
         const btnSaveCert = document.getElementById('btn-save-cert');
         const datingCertificate = document.getElementById('dating-certificate');
         const certificateWrapper = document.getElementById('certificate-wrapper');
+
+        // Runaway Button Logic for "Tidak"
+        btnReject.addEventListener('mouseover', () => {
+            const container = btnReject.parentElement;
+            
+            // On first hover, move to body to allow free movement
+            if (btnReject.parentElement !== document.body) {
+                const rect = btnReject.getBoundingClientRect();
+                btnReject.style.width = rect.width + 'px';
+                btnReject.style.height = rect.height + 'px';
+                btnReject.style.left = rect.left + 'px';
+                btnReject.style.top = rect.top + 'px';
+                btnReject.style.position = 'fixed';
+                btnReject.style.zIndex = '9999';
+                document.body.appendChild(btnReject);
+            }
+
+            const btnWidth = btnReject.getBoundingClientRect().width;
+            const btnHeight = btnReject.getBoundingClientRect().height;
+            const viewportWidth = document.documentElement.clientWidth;
+            const viewportHeight = document.documentElement.clientHeight;
+            
+            // Random position within viewport
+            const maxSafeX = viewportWidth - btnWidth - 50;
+            const maxSafeY = viewportHeight - btnHeight - 50;
+
+            let randomX = Math.floor(Math.random() * maxSafeX);
+            let randomY = Math.floor(Math.random() * maxSafeY);
+
+            randomX = Math.max(50, Math.min(randomX, maxSafeX));
+            randomY = Math.max(50, Math.min(randomY, maxSafeY));
+
+            btnReject.style.left = `${randomX}px`;
+            btnReject.style.top = `${randomY}px`;
+        });
+
+        // Click on "Tidak" (Optional: just in case it's clicked, though it moves away)
+        btnReject.addEventListener('click', (e) => {
+            e.preventDefault();
+            // No action as requested
+        });
 
         // Buka folder
         folderTrigger.addEventListener('click', () => {
@@ -272,6 +316,10 @@
             setTimeout(() => {
                 envelopeSection.style.display = 'none';
                 successScreen.style.display = 'block';
+                // Hide runaway button if it was moved to body
+                if (btnReject.parentElement === document.body) {
+                    btnReject.style.display = 'none';
+                }
             }, 600);
         });
 
