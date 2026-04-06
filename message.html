@@ -27,58 +27,34 @@
             style="max-width: 600px; position: relative; z-index: 200; pointer-events: all;">
 
             <div id="envelope-section">
-                <h2 class="title" style="font-size: 2.2rem; margin-bottom: 15px;">For You, Anisa... 🌿</h2>
-                <p class="subtitle" style="margin-bottom: 30px;">I have something to tell you.</p>
+                <!-- <h2 class="title" style="font-size: 2.2rem; margin-bottom: 15px;">For You, Anisa... 🌿</h2>
+                <p class="subtitle" style="margin-bottom: 30px;">I have something to tell you.</p> -->
 
                 <div class="proposal-container" id="folder-container">
-                    <!-- Jendela popup (Awalnya tersembunyi) -->
-                    <div class="window-ui">
-                        <div class="title-bar">
-                            <div class="window-dots">
-                                <div class="dot red"></div>
-                                <div class="dot yellow"></div>
-                                <div class="dot green"></div>
-                            </div>
-                            <div style="font-size: 0.8rem; font-weight: bold; color: #fff;">Message.txt</div>
-                            <div style="width: 30px;"></div>
+                    <!-- Direct Photo Display (No card container) -->
+                    <div id="direct-photo-content">
+                        <!-- Floating Hearts Aura -->
+                        <div class="floating-elements">
+                            <div class="f-heart h1">❤️</div>
+                            <div class="f-heart h2">✨</div>
+                            <div class="f-heart h3">❤️</div>
+                            <div class="f-heart h4">✨</div>
+                            <div class="f-heart h5">❤️</div>
                         </div>
-                        <div class="window-body" id="proposal-content">
-                            <p style="margin-bottom: 15px; text-align: justify; line-height: 1.6;">Halo Anisa,</p>
-                            <p style="margin-bottom: 15px; text-align: justify; line-height: 1.6;">Ingat tidak saat kita
-                                pertama kali berkomunikasi melalui Instagram kemarin? Sejak saat itu, aku memperhatikan
-                                caramu bersikap. Aku sangat mengagumi kesederhanaanmu, baktimu kepada orang tua, serta
-                                ketegasanmu dalam mengambil keputusan. Satu hal lagi yang selalu berkesan bagiku:
-                                senyummu sangat manis dan selalu memberikan rasa tenang.</p>
-                            <p style="margin-bottom: 15px; text-align: justify; line-height: 1.6;">Ada banyak hal dari
-                                dirimu yang membuatku terus belajar. Caramu memberikan saran yang sangat masuk akal,
-                                serta kemampuanmu memposisikan diri di berbagai situasi benar-benar membuatku kagum. Aku
-                                sangat menghargai caramu yang bisa menahan ego—bahkan saat kamu mengingatkanku untuk
-                                berpikir lebih dalam sebelum melangkah. Itu menunjukkan betapa dewasanya dirimu.
-                                Ditambah lagi, caramu berinteraksi dengan anak kecil menunjukkan sisi lembut yang alami
-                                namun tetap tegas.</p>
-                            <p style="margin-bottom: 15px; text-align: justify; line-height: 1.6;">Jujur, aku tidak
-                                ingin hubungan kita berhenti di sini saja. Aku ingin mengajakmu melangkah lebih jauh,
-                                bukan sekadar teman. Aku ingin kita memiliki ruang untuk sama-sama bertumbuh, konsisten
-                                memperbaiki diri, dan menambah kualitas diri kita masing-masing. Aku ingin kita belajar
-                                menahan ego bersama, menjadi pengingat dalam kebaikan, dan menjadi orang yang saling
-                                memberikan dukungan penuh saat salah satu dari kita sedang berjuang mencapai sesuatu.
-                            </p>
-                            <p style="margin-bottom: 15px; text-align: justify; line-height: 1.6;">Intinya, aku ingin
-                                kita berkomitmen untuk saling menjaga dan berproses bersama. Aku ingin kamu menjadi
-                                pasanganku, dengan harapan kita bisa membangun sesuatu yang lebih serius ke depannya.
-                            </p>
-                            <p
-                                style="font-weight: 700; margin-top: 25px; font-size: 1.2rem; color: var(--dark-tosca); font-family: 'Outfit', sans-serif; text-align: center;">
-                                Kamu mau kan, jadi pacar aku?</p>
 
-                            <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; position: relative; min-height: 55px;">
-                                <button id="btn-accept" class="btn btn-accent"
-                                    style="flex: 1; font-size: 1.15rem; padding: 14px; position: relative; z-index: 500; cursor: pointer;">MAU!
-                                    💎</button>
-                                <button id="btn-reject" class="btn btn-secondary"
-                                    style="flex: 1; font-size: 1.15rem; padding: 14px; position: relative; z-index: 500; cursor: pointer;">Tidak</button>
+                        <div class="roman-title-wrapper">
+                            <span class="title-bg-word">Memory</span>
+                            <h3 class="romantic-heading">A Special Moment ✨</h3>
+                        </div>
+                        <!-- Beautiful Framed Image Section -->
+                        <div class="romantic-frame-container" id="romantic-photo-trigger">
+                            <div class="romantic-image-frame">
+                                <div class="romantic-frame-tape"></div>
+                                <img src="assets/Our-Memory-Anisa.png" alt="Our Memory">
                             </div>
                         </div>
+
+                        <div class="tap-hint">Tap the photo✨</div>
                     </div>
 
                     <!-- Folder Icon -->
@@ -208,63 +184,10 @@
     <script>
         const folderTrigger = document.getElementById('folder-trigger');
         const folderContainer = document.getElementById('folder-container');
-        const btnAccept = document.getElementById('btn-accept');
-        const btnReject = document.getElementById('btn-reject');
-        const envelopeSection = document.getElementById('envelope-section');
-        const successScreen = document.getElementById('success-screen');
-        const certDate = document.getElementById('cert-date');
-        const btnSaveCert = document.getElementById('btn-save-cert');
-        const datingCertificate = document.getElementById('dating-certificate');
-        const certificateWrapper = document.getElementById('certificate-wrapper');
+        // Trigger celebration from photo click instead of button
+        const photoTrigger = document.getElementById('romantic-photo-trigger');
 
-        // Runaway Button Logic for "Tidak"
-        btnReject.addEventListener('mouseover', () => {
-            const container = btnReject.parentElement;
-            
-            // On first hover, move to body to allow free movement
-            if (btnReject.parentElement !== document.body) {
-                const rect = btnReject.getBoundingClientRect();
-                btnReject.style.width = rect.width + 'px';
-                btnReject.style.height = rect.height + 'px';
-                btnReject.style.left = rect.left + 'px';
-                btnReject.style.top = rect.top + 'px';
-                btnReject.style.position = 'fixed';
-                btnReject.style.zIndex = '9999';
-                document.body.appendChild(btnReject);
-            }
-
-            const btnWidth = btnReject.getBoundingClientRect().width;
-            const btnHeight = btnReject.getBoundingClientRect().height;
-            const viewportWidth = document.documentElement.clientWidth;
-            const viewportHeight = document.documentElement.clientHeight;
-            
-            // Random position within viewport
-            const maxSafeX = viewportWidth - btnWidth - 50;
-            const maxSafeY = viewportHeight - btnHeight - 50;
-
-            let randomX = Math.floor(Math.random() * maxSafeX);
-            let randomY = Math.floor(Math.random() * maxSafeY);
-
-            randomX = Math.max(50, Math.min(randomX, maxSafeX));
-            randomY = Math.max(50, Math.min(randomY, maxSafeY));
-
-            btnReject.style.left = `${randomX}px`;
-            btnReject.style.top = `${randomY}px`;
-        });
-
-        // Click on "Tidak" (Optional: just in case it's clicked, though it moves away)
-        btnReject.addEventListener('click', (e) => {
-            e.preventDefault();
-            // No action as requested
-        });
-
-        // Buka folder
-        folderTrigger.addEventListener('click', () => {
-            folderContainer.classList.add('open');
-        });
-
-        // Terima tombol
-        btnAccept.addEventListener('click', function (e) {
+        photoTrigger.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
 
@@ -316,11 +239,33 @@
             setTimeout(() => {
                 envelopeSection.style.display = 'none';
                 successScreen.style.display = 'block';
-                // Hide runaway button if it was moved to body
-                if (btnReject.parentElement === document.body) {
-                    btnReject.style.display = 'none';
-                }
             }, 600);
+        });
+
+        // Buka folder
+        folderTrigger.addEventListener('click', () => {
+            folderContainer.classList.add('open');
+
+            // Heart Burst on Open
+            const count = 40;
+            const defaults = {
+                origin: { y: 0.8 },
+                zIndex: 1000
+            };
+
+            function fire(particleRatio, opts) {
+                confetti({
+                    ...defaults,
+                    ...opts,
+                    particleCount: Math.floor(count * particleRatio),
+                    shapes: ['heart'],
+                    colors: ['#ff0000', '#FFD700', '#B8860B'] // Red and Gold
+                });
+            }
+
+            fire(0.25, { spread: 26, startVelocity: 55 });
+            fire(0.2, { spread: 60 });
+            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
         });
 
         // Simpan Sertifikat Sebagai Gambar
